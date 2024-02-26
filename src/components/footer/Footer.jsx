@@ -71,7 +71,7 @@ const Footer = () => {
                         </a>
 
                         {/* linkedIn  */}
-                        <a className="ml-3 text-gray-100 cursor-pointer">
+                        <a  href="https://www.linkedin.com/in/procrafted-team-120a002b6/" target="_blank" className="ml-3 text-gray-100 cursor-pointer">
                             <svg
                                 fill="currentColor"
                                 stroke="currentColor"

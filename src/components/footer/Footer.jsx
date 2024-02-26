@@ -55,7 +55,7 @@ const Footer = () => {
                         </a>
 
                         {/* instagram  */}
-                        <a className="ml-3 text-gray-100 cursor-pointer">
+                        <a  href="https://www.instagram.com/pro_crafted" className="ml-3 text-gray-100 cursor-pointer">
                             <svg
                                 fill="none"
                                 stroke="currentColor"

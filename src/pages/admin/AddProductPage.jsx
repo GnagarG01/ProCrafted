@@ -23,10 +23,10 @@ const categoryList = [
         name: 'MarbelCraft'
     },
     {
-        name: 'Glassware'
+        name: 'Leather'
     },
     {
-        name: 'HandiCraft'
+        name: 'HomeDecor'
     }
 ]
 

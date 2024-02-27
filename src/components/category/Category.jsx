@@ -24,11 +24,11 @@ const category = [
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/256/12114/12114279.png',
-        name: 'Glassware'
+        name: 'Leather'
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/256/11946/11946316.png',
-        name: 'HandiCraft'
+        name: 'HomeDecor'
     }
 ]
 

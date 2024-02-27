@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 // category 
 const category = [
     {
-        image: 'https://i.ibb.co/ssDf7TQ/fashion.png',
+        image: 'https://cdn-icons-png.flaticon.com/256/4359/4359963.png',
         name: 'Fashion'
     },
     {

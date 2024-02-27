@@ -19,7 +19,7 @@ const category = [
         name: 'MetalCraft'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/12142/12142416.png',
+        image: 'https://i.ibb.co/jgKXT6F/OIG1-B4m-CR.png',
         name: 'MarbelCraft'
     },
     {

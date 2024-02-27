@@ -27,7 +27,7 @@ const category = [
         name: 'Leather'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11946/11946316.png',
+        image: 'https://i.ibb.co/NSM2tw2/OIG4-8z-A6v-Ny7yv2d-i-QFQM.png',
         name: 'HomeDecor'
     }
 ]

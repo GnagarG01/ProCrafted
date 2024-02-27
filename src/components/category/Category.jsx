@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 // category 
 const category = [
     {
-        image: '../../../public/img/fc2.png',
+        image: 'src=../../../public/img/fc2.png',
         name: 'Fashion'
     },
     {

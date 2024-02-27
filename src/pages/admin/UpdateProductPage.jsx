@@ -11,25 +11,22 @@ const categoryList = [
         name: 'fashion'
     },
     {
-        name: 'shirt'
+        name: 'Wooden'
     },
     {
-        name: 'jacket'
+        name: 'Pottery'
     },
     {
-        name: 'mobile'
+        name: 'MetalCraft'
     },
     {
-        name: 'laptop'
+        name: 'MarbelCraft'
     },
     {
-        name: 'shoes'
+        name: 'Glassware'
     },
     {
-        name: 'home'
-    },
-    {
-        name: 'books'
+        name: 'HandiCraft'
     }
 ]
 

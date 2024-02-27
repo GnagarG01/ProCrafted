@@ -7,7 +7,7 @@ const category = [
         name: 'Fashion'
     },
     {
-        image: 'https://vscode.dev/github/GnagarG01/ProCrafted/blob/main/public/img/wooden.png',
+        image: 'https://cdn-icons-png.flaticon.com/256/11833/11833323.png',
         name: 'Wooden'
     },
     {

@@ -15,7 +15,7 @@ const category = [
         name: 'Pottery'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/7648/7648246.png',
+        image: 'https://i.ibb.co/8YQwwPB/Metal-Craft.png',
         name: 'MetalCraft'
     },
     {

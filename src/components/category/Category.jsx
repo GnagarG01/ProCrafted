@@ -7,7 +7,7 @@ const category = [
         name: 'Fashion'
     },
     {
-        image: 'D:\React+Firebase\ProCrafted\public\img\wooden.png',
+        image: 'https://vscode.dev/github/GnagarG01/ProCrafted/blob/main/public/img/wooden.png',
         name: 'Wooden'
     },
     {

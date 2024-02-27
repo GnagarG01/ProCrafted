@@ -11,7 +11,7 @@ const category = [
         name: 'Wooden'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/8174/8174424.png',
+        image: 'https://i.ibb.co/6XzqX4W/OIG4.png',
         name: 'Pottery'
     },
     {

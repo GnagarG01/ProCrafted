@@ -19,7 +19,7 @@ const category = [
         name: 'MetalCraft'
     },
     {
-        image: 'https://i.ibb.co/jgKXT6F/OIG1-B4m-CR.png',
+        image: 'https://i.ibb.co/4mWCrNZ/OIG4-Te.png',
         name: 'MarbelCraft'
     },
     {

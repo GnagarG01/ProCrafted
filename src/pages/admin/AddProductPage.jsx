@@ -8,7 +8,7 @@ import Loader from "../../components/loader/Loader";
 
 const categoryList = [
     {
-        name: 'fashion'
+        name: 'Fashion'
     },
     {
         name: 'Wooden'

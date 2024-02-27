@@ -153,12 +153,8 @@ const ProductInfo = () => {
                                             </div>
                                             <p className="inline-block text-2xl font-semibold text-gray-700 dark:text-gray-400 ">
                                                 <span>₹ {product?.price}</span>
-                                            </p>
-                                            <select name="Title" id="Size">
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                            </select> 
-                                        </div>
+                                            </p>  
+                                        </div> 
                                         <div className="mb-6">
                                             <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
                                                 Description :

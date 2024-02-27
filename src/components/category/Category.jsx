@@ -7,7 +7,7 @@ const category = [
         name: 'Fashion'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11833/11833323.png',
+        image: 'D:\React+Firebase\ProCrafted\public\img\wooden.png',
         name: 'Wooden'
     },
     {

@@ -60,9 +60,9 @@ const CartPage = () => {
     const buyNowFunction = () => {
         // validation 
         if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
-            return toast.error("All Fields are required")
+            return toast.error("All Fields are required");
         }
-
+    
         // Order Info 
         const orderInfo = {
             cartItems,
@@ -79,7 +79,8 @@ const CartPage = () => {
                     year: "numeric",
                 }
             )
-        }
+        };
+    
         try {
             const orderRef = collection(fireDB, 'order');
             addDoc(orderRef, orderInfo);
@@ -88,13 +89,19 @@ const CartPage = () => {
                 address: "",
                 pincode: "",
                 mobileNumber: "",
-            })
-            toast.success("Order Placed Successfull")
+            });
+    
+            // Dispatch action to remove items from the cart
+            cartItems.forEach(item => {
+                dispatch(deleteFromCart(item));
+            });
+    
+            toast.success("Order Placed Successfully");
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-
     }
+    
     return (
         <Layout>
             <div className="container mx-auto px-4 max-w-7xl lg:px-0">

@@ -23,7 +23,7 @@ const category = [
         name: 'MarbelCraft'
     },
     {
-        image: 'https://i.ibb.co/w764h0h/OIG3.png',
+        image: 'https://i.ibb.co/gPR7NFB/leather.png',
         name: 'Leather'
     },
     {

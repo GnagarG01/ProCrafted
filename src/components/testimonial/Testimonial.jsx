@@ -38,9 +38,9 @@ const Testimonial = () => {
                         <div className="lg:w-1/3 lg:mb-0 p-4">
                             <div className="h-full text-center">
                                 <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" />
-                                <p className="leading-relaxed">The attention to element in every product is first-rate, showcasing the determination and knowledge of the artisans behind them.</p>
+                                <p className="leading-relaxed">The attention to element in every product is first-rate, showcasing the determination and knowledge of the artisans behind them.it's evident that each piece is crafted with love and care.</p>
                                 <span className="inline-block h-1 w-10 rounded bg-pink-500 mt-6 mb-4" />
-                                <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm uppercase">XYZ </h2>
+                                <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm uppercase">Ajeet </h2>
                                 <p className="text-gray-500">User</p>
                             </div>
                         </div>

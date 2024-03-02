@@ -25,25 +25,8 @@ const CartPage = () => {
     const handleDecrement = (id) => {
         dispatch(decrementQuantity(id));
     };
-    const [product, setProduct] = useState('')
-    // const cartQuantity = cartItems.length;
-    // getProductData
-    const getProductData = async () => {
-        setLoading(true)
-        try {
-            const productTemp = await getDoc(doc(fireDB, "products", id))
-            // console.log({...productTemp.data(), id : productTemp.id})
-            setProduct({...productTemp.data(), id : productTemp.id})
-            setLoading(false)
-        } catch (error) {
-            console.log(error)
-            setLoading(false)
-        }
-    }
-    useEffect(() => {
-        getProductData()
 
-    }, [])
+    // const cartQuantity = cartItems.length;
 
     const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
 
@@ -163,7 +146,7 @@ const CartPage = () => {
                                                                     </div>
                                                                     <div className="mt-1 flex items-end">
                                                                         <p className="text-sm font-medium text-gray-900">
-                                                                            ₹{product?.price}
+                                                                            ₹{price}
                                                                         </p>
                                                                     </div>
                                                                 </div>

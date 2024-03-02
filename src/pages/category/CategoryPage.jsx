@@ -67,7 +67,7 @@ const CategoryPage = () => {
                                     <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
                                         <img
                                             onClick={() => navigate(`/productinfo/${id}`)}
-                                            className="lg:h-80  h-96 w-full"
+                                            className="lg:h-50  h-40 w-full"
                                             src={productImageUrl}
                                             alt="blog"
                                         />
@@ -76,7 +76,7 @@ const CategoryPage = () => {
                                                 ProCrafted
                                             </h2>
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-                                                {title.substring(0, 25)}
+                                                {title.substring(0, 19)}
                                             </h1>
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                 ₹{price}

@@ -78,7 +78,7 @@ const ProductInfo = () => {
                                     <div className="">
                                         <div className="">
                                             <img
-                                                className=" w-full lg:h-[39em] rounded-lg"
+                                                className=" w-200 lg:h-[20em] rounded-lg"
                                                 src={product?.productImageUrl}
                                                 alt=""
                                             />

@@ -12,7 +12,7 @@ const Track = () => {
                             </svg>
 
                             <h2 className="title-font font-medium text-lg text-gray-900" >Premium HandiCrafts</h2>
-                            <p className="leading-relaxed">Each of our HandiCrafts is meticulously crafted by skilled artisans, guaranteeing top-notch quality..
+                            <p className="leading-relaxed">Each of our HandiCrafts is meticulously crafted by skilled artisans, guaranteeing top-notch quality.Our HandiCrafts capture the essence of Rajasthan's.
                             </p>
                         </div>
                     </div>

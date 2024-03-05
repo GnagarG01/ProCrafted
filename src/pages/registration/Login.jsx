@@ -7,7 +7,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import Loader from "../../components/loader/Loader";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const Login = () => {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
@@ -20,7 +21,7 @@ const Login = () => {
         email: "",
         password: ""
     });
-
+    const [passwordVisible, setPasswordVible]= useState(false);
     /**========================================================================
      *                          User Login Function 
     *========================================================================**/
@@ -100,9 +101,9 @@ const Login = () => {
                 </div>
 
                 {/* Input Two  */}
-                <div className="mb-5">
+                <div className="mb-5 relative">
                     <input
-                        type="password"
+                        type={passwordVisible ? "text":"password"}
                         placeholder='Password'
                         value={userLogin.password}
                         onChange={(e) => {
@@ -113,6 +114,9 @@ const Login = () => {
                         }}
                         className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
                     />
+                    <div className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer" onClick={()=> setPasswordVible(!passwordVisible)}>
+                        < FontAwesomeIcon icon={passwordVisible ? faEyeSlash: faEye} size="xs" style={{color: "#d40c5c"}} />
+                    </div>
                 </div>
 
                 {/* Signup Button  */}

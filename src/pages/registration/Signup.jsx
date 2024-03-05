@@ -7,6 +7,8 @@ import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
     const context = useContext(myContext);
@@ -22,7 +24,7 @@ const Signup = () => {
         password: "",
         role: "user"
     });
-
+    const [passwordVisible, setPasswordVible]= useState(false);
     /**========================================================================
      *                          User Signup Function 
     *========================================================================**/
@@ -122,9 +124,9 @@ const Signup = () => {
                 </div>
 
                 {/* Input Three  */}
-                <div className="mb-5">
+                <div className="mb-5 relative">
                     <input
-                        type="password"
+                        type={passwordVisible ? "text":"password"}
                         placeholder='Password'
                         value={userSignup.password}
                         onChange={(e) => {
@@ -135,6 +137,9 @@ const Signup = () => {
                         }}
                         className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
                     />
+                    <div className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer" onClick={()=> setPasswordVible(!passwordVisible)}>
+                        < FontAwesomeIcon icon={passwordVisible ? faEyeSlash: faEye} size="xs" style={{color: "#d40c5c"}} />
+                    </div>
                 </div>
 
                 {/* Signup Button  */}

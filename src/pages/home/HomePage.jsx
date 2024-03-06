@@ -12,12 +12,12 @@ const HomePage = () => {
             <HeroSection/>
             <Category/>
             <HomePageProductCard/>
-            <Track/>
             <div className="flex justify-center my-3.5">
                 <Link to={'/allproduct'}>
                     <button className=' bg-gray-500 px-5 py-2 rounded-xl'>See more</button>
                 </Link>
             </div>
+            <Track/>
             <Testimonial/>
         </Layout>
     );

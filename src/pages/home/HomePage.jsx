@@ -4,6 +4,7 @@ import HomePageProductCard from "../../components/homePageProductCard/HomePagePr
 import Layout from "../../components/layout/Layout";
 import Testimonial from "../../components/testimonial/Testimonial";
 import Track from "../../components/track/Track";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -12,6 +13,11 @@ const HomePage = () => {
             <Category/>
             <HomePageProductCard/>
             <Track/>
+            <div className="flex justify-center my-3.5">
+                <Link to={'/allproduct'}>
+                    <button className=' bg-gray-500 px-5 py-2 rounded-xl'>See more</button>
+                </Link>
+            </div>
             <Testimonial/>
         </Layout>
     );

@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import Navbar from "../../components/navbar/Navbar";
 const Signup = () => {
     const context = useContext(myContext);
     const {loading, setLoading } = context;
@@ -79,7 +79,11 @@ const Signup = () => {
 
     }
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <>
+        <div className="containerr">
+            <Navbar/>
+        </div>
+        <div className='flex justify-center items-center m-20'>
             {loading && <Loader/>}
             {/* Login Form  */}
             <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
@@ -159,6 +163,7 @@ const Signup = () => {
 
             </div>
         </div>
+        </>
     );
 }
 

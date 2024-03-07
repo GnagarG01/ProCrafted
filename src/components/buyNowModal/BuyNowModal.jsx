@@ -1,25 +1,32 @@
-/* eslint-disable react/prop-types */
+// /* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import {
     Button,
     Dialog,
     DialogBody,
 } from "@material-tailwind/react";
-import { useState } from "react";
 
-const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
+const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction, cartNotEmpty }) => {
     const [open, setOpen] = useState(false);
 
-    const handleOpen = () => setOpen(!open);
+    const handleOpen = () => {
+        if (cartNotEmpty) {
+            setOpen(!open);
+        } else {
+            alert("Your cart is empty");
+        }
+    }
+
     return (
         <>
             <Button
                 type="button"
                 onClick={handleOpen}
-                className="w-full px-4 py-3 text-center text-gray-100 bg-pink-600 border border-transparent dark:border-gray-700 hover:border-pink-500 hover:text-pink-700 hover:bg-pink-100 rounded-xl"
+                className={`w-full px-4 py-3 text-center text-gray-100 bg-pink-600 border border-transparent ${cartNotEmpty ? "hover:border-pink-500 hover:text-pink-700 hover:bg-pink-100" : "opacity-50 cursor-not-allowed"} rounded-xl`}
             >
                 Buy now
             </Button>
-            <Dialog open={open} handler={handleOpen} className=" bg-pink-50">
+            <Dialog open={open} handler={handleOpen} className="bg-pink-50">
                 <DialogBody className="">
                     <div className="mb-3">
                         <input
@@ -86,7 +93,6 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
 
                     <div className="">
                         <Button
-
                             type="button"
                             onClick={() => {
                                 handleOpen();
@@ -97,7 +103,6 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                             Buy now
                         </Button>
                     </div>
-
                 </DialogBody>
             </Dialog>
         </>

@@ -1,9 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../components/layout/Layout";
-import { Trash } from 'lucide-react'
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Layout from '../../components/layout/Layout';
+import { Trash } from 'lucide-react';
 import { decrementQuantity, deleteFromCart, incrementQuantity } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
@@ -26,21 +27,16 @@ const CartPage = () => {
         dispatch(decrementQuantity(id));
     };
 
-    // const cartQuantity = cartItems.length;
-
     const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
 
     const cartTotal = cartItems.map(item => item.price * item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
 
-
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems])
+    }, [cartItems]);
 
-    // user
-    const user = JSON.parse(localStorage.getItem('users'))
+    const user = JSON.parse(localStorage.getItem('users'));
 
-    // Buy Now Function
     const [addressInfo, setAddressInfo] = useState({
         name: "",
         address: "",
@@ -57,13 +53,17 @@ const CartPage = () => {
         )
     });
 
-    const buyNowFunction = () => {
-        // validation 
+    // Include your API key and secret key here
+    const YOUR_API_KEY = "rzp_test_5EXLDL9LJbGgFE";
+    const YOUR_SECRET_KEY = "xx6iu5xBpIz82HUzAN1uebSI";
+
+    const buyNowFunction = async () => {
+        // Validation
         if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
             return toast.error("All Fields are required");
         }
-    
-        // Order Info 
+
+        // Order Info
         const orderInfo = {
             cartItems,
             addressInfo,
@@ -80,7 +80,7 @@ const CartPage = () => {
                 }
             )
         };
-    
+
         try {
             const orderRef = collection(fireDB, 'order');
             addDoc(orderRef, orderInfo);
@@ -90,18 +90,64 @@ const CartPage = () => {
                 pincode: "",
                 mobileNumber: "",
             });
-    
+
             // Dispatch action to remove items from the cart
             cartItems.forEach(item => {
                 dispatch(deleteFromCart(item));
             });
-    
+
+            // Payment Integration
+            const options = {
+                key: YOUR_API_KEY,
+                key_secret: YOUR_SECRET_KEY,
+                amount: parseInt(cartTotal * 100),
+                currency: "INR",
+                order_receipt: 'order_rcptid_' + user.email,
+                name: "ProCrafted",
+                description: "for testing purpose",
+                handler: function (response) {
+                    console.log(response);
+                    toast.success('Payment Successful');
+
+                    const paymentId = response.razorpay_payment_id;
+
+                    const orderInfo = {
+                        cartItems,
+                        addressInfo,
+                        date: new Date().toLocaleString(
+                            "en-US",
+                            {
+                                month: "short",
+                                day: "2-digit",
+                                year: "numeric",
+                            }
+                        ),
+                        email: user.email,
+                        userid: user.uid,
+                        paymentId
+                    };
+
+                    try {
+                        const orderRef = collection(fireDB, 'order');
+                        addDoc(orderRef, orderInfo);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                },
+                theme: {
+                    color: "#3399cc"
+                }
+            };
+
+            const paymentInstance = new window.Razorpay(options);
+            paymentInstance.open();
+
             toast.success("Order Placed Successfully");
         } catch (error) {
             console.log(error);
         }
-    }
-    
+    };
+
     return (
         <Layout>
             <div className="container mx-auto px-4 max-w-7xl lg:px-0">
@@ -218,7 +264,8 @@ const CartPage = () => {
                                                 addressInfo={addressInfo}
                                                 setAddressInfo={setAddressInfo}
                                                 buyNowFunction={buyNowFunction}
-                                            /> : <Navigate to={'/login'}/>
+                                                cartNotEmpty={cartTotal}
+                                            /> : <Navigate to={'/login'} />
                                         }
                                     </div>
                                 </div>
@@ -232,5 +279,3 @@ const CartPage = () => {
 }
 
 export default CartPage;
-
-

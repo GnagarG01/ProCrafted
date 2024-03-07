@@ -123,7 +123,13 @@ const Login = () => {
                         < FontAwesomeIcon icon={passwordVisible ? faEyeSlash: faEye} size="xs" style={{color: "#d40c5c"}} />
                     </div>
                 </div>
-
+                
+                <div className="mb-3">
+                    <Link to="/forgot-password" className="text-pink-500 hover:underline" onClick={() => navigate('/forgot-password')}>
+                        Forgot Password?
+                    </Link>
+                </div>
+                
                 {/* Signup Button  */}
                 <div className="mb-5">
                     <button

@@ -20,7 +20,7 @@ import { Toaster } from "react-hot-toast";
 import { ProtectedRouteForUser } from "./protectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./protectedRoute/ProtectedRouteForAdmin";
 import CategoryPage from "./pages/category/CategoryPage";
-
+import ForgotPassword from "./pages/registration/ForgotPassword";
 const App = () => {
   return (
     <MyState>
@@ -34,6 +34,7 @@ const App = () => {
           <Route path="/allproduct" element={<AllProduct />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
           <Route path="/category/:categoryname" element={<CategoryPage />} />  {/* category Page route  */}
           <Route path="/user-dashboard" element={
             <ProtectedRouteForUser>

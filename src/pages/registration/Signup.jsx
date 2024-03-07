@@ -83,7 +83,7 @@ const Signup = () => {
         <div className="containerr">
             <Navbar/>
         </div>
-        <div className='flex justify-center items-center m-20'>
+        <div className='flex justify-center items-center m-24'>
             {loading && <Loader/>}
             {/* Login Form  */}
             <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">

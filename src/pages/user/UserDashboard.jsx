@@ -44,10 +44,10 @@ const UserDashboard = () => {
                             </h1>
 
                             {/* Role  */}
-                            <h1 className=" text-center text-lg">
+                            {/* <h1 className=" text-center text-lg">
                                 <span className=" font-bold">Role : </span>
                                 {user?.role}
-                            </h1>
+                            </h1> */}
                         </div>
                     </div>
                 </div>

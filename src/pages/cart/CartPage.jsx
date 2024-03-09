@@ -226,7 +226,7 @@ const CartPage = () => {
                                     </>
                                     :
 
-                                    <h1>Cart is Empty!</h1>}
+                                    <h1>Your Cart is Empty!</h1>}
                             </ul>
                         </section>
                         {/* Order summary */}

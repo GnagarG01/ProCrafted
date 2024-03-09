@@ -22,14 +22,14 @@ const HomePageProductCard = () => {
     // add to cart function
     const addCart = (item) => {
         dispatch(addToCart(item));
-        toast.success("Added to cart")
+        toast.success("Added to cart", {duration: 1000})
     }
 
 
     // delete from cart function
     const deleteCart = (item) => {
         dispatch(deleteFromCart(item));
-        toast.success("Delete cart")
+        toast.success("Delete cart",{duration: 1000})
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const HomePageProductCard = () => {
                         {getAllProduct.slice(0, 15).map((item, index) => {
                             const { id, title, price, productImageUrl } = item;
                             return (
-                                <div key={index} className="p-4 w-full md:w-1/5">
+                                <div key={index} className="p-4 w-full md:w-1/5 transition duration-200 ease-in transform hover:scale-110 hover:shadow-none">
                                     <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
                                         <img
                                             onClick={() => navigate(`/productinfo/${id}`)}

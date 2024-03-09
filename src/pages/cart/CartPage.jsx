@@ -156,7 +156,7 @@ const CartPage = () => {
                         Shopping Cart
                     </h1>
                     <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
-                        <section aria-labelledby="cart-heading" className="rounded-lg bg-white lg:col-span-8">
+                        <section aria-labelledby="cart-heading" className="rounded-lg bg-white lg:col-span-7 border border-gray-300 rounded-xl">
                             <h2 id="cart-heading" className="sr-only">
                                 Items in your shopping cart
                             </h2>
@@ -226,7 +226,7 @@ const CartPage = () => {
                                     </>
                                     :
 
-                                    <h1>Not Found</h1>}
+                                    <h1>Cart is Empty!</h1>}
                             </ul>
                         </section>
                         {/* Order summary */}

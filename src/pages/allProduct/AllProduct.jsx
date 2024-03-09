@@ -51,7 +51,7 @@ const AllProduct = () => {
                     {getAllProduct.map((item, index) => {
                             const { id, title, price, productImageUrl } = item
                             return (
-                                <div key={index} className="p-4 w-full md:w-1/5">
+                                <div key={index} className="p-4 w-full md:w-1/5 transition duration-200 ease-in transform hover:scale-110 hover:shadow-none">
                                     <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
                                         <img
                                             onClick={() => navigate(`/productinfo/${id}`)}

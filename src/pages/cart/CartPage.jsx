@@ -92,9 +92,7 @@ const CartPage = () => {
             });
 
             // Dispatch action to remove items from the cart
-            cartItems.forEach(item => {
-                dispatch(deleteFromCart(item));
-            });
+            
 
             // Payment Integration
             const options = {
@@ -130,6 +128,10 @@ const CartPage = () => {
                     try {
                         const orderRef = collection(fireDB, 'order');
                         addDoc(orderRef, orderInfo);
+                        cartItems.forEach(item => {
+                            dispatch(deleteFromCart(item));
+                        });
+
                     } catch (error) {
                         console.log(error);
                     }

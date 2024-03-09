@@ -51,7 +51,7 @@ const Login = () => {
                         email: "",
                         password: ""
                     })
-                    toast.success("Login Successfully");
+                    toast.success("Login Successfully",{duration: 1000});
                     setLoading(false);
                     if(user.role === "user") {
                         navigate('/user-dashboard');

@@ -54,8 +54,27 @@ const UpdateProductPage = () => {
                 day: "2-digit",
                 year: "numeric",
             }
-        )
+        ),
+        adminUid: "" // Initialize admin UID
     });
+
+    // Effect to fetch admin's UID
+    useEffect(() => {
+        const fetchAdminUid = async () => {
+            try {
+                const user = auth.currentUser; // Get the current user
+                if (user) {
+                    setProduct(prevProduct => ({
+                        ...prevProduct,
+                        adminUid: user.uid // Set admin UID in product state
+                    }));
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchAdminUid();
+    }, []);
 
     // Get Single Product Function
     const getSingleProductFunction = async () => {
@@ -69,6 +88,7 @@ const UpdateProductPage = () => {
                 productImageUrl: product?.productImageUrl,
                 category: product?.category,
                 description: product?.description,
+                quantity: product?.quantity,
                 time: product?.time,
                 date: product?.date
             })
@@ -111,7 +131,7 @@ const UpdateProductPage = () => {
                         </h2>
                     </div>
 
-                    {/* Input One  */}
+                    {/* Input One title */}
                     <div className="mb-3">
                         <input
                             type="text"
@@ -128,7 +148,7 @@ const UpdateProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Two  */}
+                    {/* Input Two price */}
                     <div className="mb-3">
                         <input
                             type="number"
@@ -145,7 +165,7 @@ const UpdateProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Three  */}
+                    {/* Input Three image url */}
                     <div className="mb-3">
                         <input
                             type="text"
@@ -162,7 +182,7 @@ const UpdateProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Four  */}
+                    {/* Input Four category */}
                     <div className="mb-3">
                         <select
                             value={product.category}
@@ -183,7 +203,7 @@ const UpdateProductPage = () => {
                         </select>
                     </div>
 
-                    {/* Input Five  */}
+                    {/* Input Five description */}
                     <div className="mb-3">
                         <textarea
                             value={product.description}
@@ -196,7 +216,22 @@ const UpdateProductPage = () => {
 
                         </textarea>
                     </div>
-
+                    {/* Add a quantity input field */}
+                    <div className="mb-3">
+                        <input
+                            type="number"
+                            name="quantity"
+                            value={product.quantity}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    quantity: e.target.value
+                                })
+                            }}
+                            placeholder='Quantity'
+                            className='bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300'
+                        />
+                    </div>
                     {/* Update Product Button  */}
                     <div className="mb-3">
                         <button

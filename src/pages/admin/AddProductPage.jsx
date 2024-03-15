@@ -1,8 +1,8 @@
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import myContext from "../../context/myContext";
 import toast from "react-hot-toast";
-import { fireDB } from "../../firebase/FirebaseConfig";
+import { fireDB, auth} from "../../firebase/FirebaseConfig";
 import { useNavigate } from "react-router";
 import Loader from "../../components/loader/Loader";
 
@@ -33,7 +33,6 @@ const categoryList = [
 const AddProductPage = () => {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
-
     // navigate 
     const navigate = useNavigate();
 
@@ -53,9 +52,27 @@ const AddProductPage = () => {
                 day: "2-digit",
                 year: "numeric",
             }
-        )
+        ),
+        adminUid: "" // Initialize admin UID
     });
 
+    // Effect to fetch admin's UID
+    useEffect(() => {
+        const fetchAdminUid = async () => {
+            try {
+                const user = auth.currentUser; // Get the current user
+                if (user) {
+                    setProduct(prevProduct => ({
+                        ...prevProduct,
+                        adminUid: user.uid // Set admin UID in product state
+                    }));
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchAdminUid();
+    }, []);
 
     // Add Product Function
     const addProductFunction = async () => {
@@ -75,8 +92,9 @@ const AddProductPage = () => {
             setLoading(false)
             toast.error("Add product failed");
         }
-
     }
+
+    
     return (
         <div>
             <div className='flex justify-center items-center h-screen'>
@@ -91,7 +109,7 @@ const AddProductPage = () => {
                         </h2>
                     </div>
 
-                    {/* Input One  */}
+                    {/* Input One title */}
                     <div className="mb-3">
                         <input
                             type="text"
@@ -108,7 +126,7 @@ const AddProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Two  */}
+                    {/* Input Two price */}
                     <div className="mb-3">
                         <input
                             type="number"
@@ -125,7 +143,7 @@ const AddProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Three  */}
+                    {/* Input Three image url */}
                     <div className="mb-3">
                         <input
                             type="text"
@@ -142,7 +160,7 @@ const AddProductPage = () => {
                         />
                     </div>
 
-                    {/* Input Four  */}
+                    {/* Input Four category */}
                     <div className="mb-3">
                         <select
                             value={product.category}
@@ -163,7 +181,7 @@ const AddProductPage = () => {
                         </select>
                     </div>
 
-                    {/* Input Five  */}
+                    {/* Input Five description  */}
                     <div className="mb-3">
                         <textarea
                             value={product.description}
@@ -176,7 +194,22 @@ const AddProductPage = () => {
 
                         </textarea>
                     </div>
-
+                    {/* Add a quantity input field */}
+                    <div className="mb-3">
+                        <input
+                            type="number"
+                            name="quantity"
+                            value={product.quantity}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    quantity: e.target.value
+                                })
+                            }}
+                            placeholder='Quantity'
+                            className='bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300'
+                        />
+                    </div>
                     {/* Add Product Button  */}
                     <div className="mb-3">
                         <button

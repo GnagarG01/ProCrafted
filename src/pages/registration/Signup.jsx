@@ -8,11 +8,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../../components/navbar/Navbar";
 const Signup = () => {
     const context = useContext(myContext);
-    const {loading, setLoading } = context;
+    const { loading, setLoading } = context;
 
     // navigate 
     const navigate = useNavigate();
@@ -22,9 +22,16 @@ const Signup = () => {
         name: "",
         email: "",
         password: "",
-        role: "user"
+        role: "user" //Default role is user
     });
-    const [passwordVisible, setPasswordVible]= useState(false);
+    const [passwordVisible, setPasswordVible] = useState(false);
+    // Handle role change
+    const handleRoleChange = (e) => {
+        setUserSignup({
+            ...userSignup,
+            role: e.target.value
+        });
+    };
     /**========================================================================
      *                          User Signup Function 
     *========================================================================**/
@@ -80,89 +87,95 @@ const Signup = () => {
     }
     return (
         <>
-        <div className="containerr">
-            <Navbar/>
-        </div>
-        <div className='flex justify-center items-center m-24'>
-            {loading && <Loader/>}
-            {/* Login Form  */}
-            <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
-
-                {/* Top Heading  */}
-                <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-pink-500 '>
-                        Signup
-                    </h2>
-                </div>
-
-                {/* Input One  */}
-                <div className="mb-3">
-                    <input
-                        type="text"
-                        placeholder='Full Name'
-                        value={userSignup.name}
-                        onChange={(e) => {
-                            setUserSignup({
-                                ...userSignup,
-                                name: e.target.value
-                            })
-                        }}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
-                    />
-                </div>
-
-                {/* Input Two  */}
-                <div className="mb-3">
-                    <input
-                        type="email"
-                        placeholder='Email Address'
-                        value={userSignup.email}
-                        onChange={(e) => {
-                            setUserSignup({
-                                ...userSignup,
-                                email: e.target.value
-                            })
-                        }}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
-                    />
-                </div>
-
-                {/* Input Three  */}
-                <div className="mb-5 relative">
-                    <input
-                        type={passwordVisible ? "text":"password"}
-                        placeholder='Password'
-                        value={userSignup.password}
-                        onChange={(e) => {
-                            setUserSignup({
-                                ...userSignup,
-                                password: e.target.value
-                            })
-                        }}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
-                    />
-                    <div className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer" onClick={()=> setPasswordVible(!passwordVisible)}>
-                        < FontAwesomeIcon icon={passwordVisible ? faEyeSlash: faEye} size="xs" style={{color: "#d40c5c"}} />
-                    </div>
-                </div>
-
-                {/* Signup Button  */}
-                <div className="mb-5">
-                    <button
-                        type='button'
-                        onClick={userSignupFunction}
-                        className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
-                    >
-                        Signup
-                    </button>
-                </div>
-
-                <div>
-                    <h2 className='text-black'>Have an account <Link className=' text-pink-500 font-bold' to={'/login'}>Login</Link></h2>
-                </div>
-
+            <div className="containerr">
+                <Navbar />
             </div>
-        </div>
+            <div className='flex justify-center items-center m-24'>
+                {loading && <Loader />}
+                {/* Login Form  */}
+                <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+
+                    {/* Top Heading  */}
+                    <div className="mb-5">
+                        <h2 className='text-center text-2xl font-bold text-pink-500 '>
+                            Signup
+                        </h2>
+                    </div>
+
+                    {/* Input One Full Name */}
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            placeholder='Full Name'
+                            value={userSignup.name}
+                            onChange={(e) => {
+                                setUserSignup({
+                                    ...userSignup,
+                                    name: e.target.value
+                                })
+                            }}
+                            className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        />
+                    </div>
+
+                    {/* Input Two E-mail */}
+                    <div className="mb-3">
+                        <input
+                            type="email"
+                            placeholder='Email Address'
+                            value={userSignup.email}
+                            onChange={(e) => {
+                                setUserSignup({
+                                    ...userSignup,
+                                    email: e.target.value
+                                })
+                            }}
+                            className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        />
+                    </div>
+
+                    {/* Input Three Password */}
+                    <div className="mb-5 relative">
+                        <input
+                            type={passwordVisible ? "text" : "password"}
+                            placeholder='Password'
+                            value={userSignup.password}
+                            onChange={(e) => {
+                                setUserSignup({
+                                    ...userSignup,
+                                    password: e.target.value
+                                })
+                            }}
+                            className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        />
+                        <div className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer" onClick={() => setPasswordVible(!passwordVisible)}>
+                            < FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} size="xs" style={{ color: "#d40c5c" }} />
+                        </div>
+                    </div>
+                    {/* Role Selection */}
+                    <div className="mb-3">
+                        <select value={userSignup.role} onChange={handleRoleChange} className="bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    {/* Signup Button  */}
+                    <div className="mb-5">
+                        <button
+                            type='button'
+                            onClick={userSignupFunction}
+                            className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
+                        >
+                            Signup
+                        </button>
+                    </div>
+
+                    <div>
+                        <h2 className='text-black'>Have an account <Link className=' text-pink-500 font-bold' to={'/login'}>Login</Link></h2>
+                    </div>
+
+                </div>
+            </div>
         </>
     );
 }

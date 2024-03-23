@@ -55,7 +55,7 @@ const UpdateProductPage = () => {
                 year: "numeric",
             }
         ),
-        adminUid: "" // Initialize admin UID
+        uid: "" // Initialize admin UID
     });
 
     // Effect to fetch admin's UID
@@ -66,7 +66,7 @@ const UpdateProductPage = () => {
                 if (user) {
                     setProduct(prevProduct => ({
                         ...prevProduct,
-                        adminUid: user.uid // Set admin UID in product state
+                        uid: user.uid // Set admin UID in product state
                     }));
                 }
             } catch (error) {

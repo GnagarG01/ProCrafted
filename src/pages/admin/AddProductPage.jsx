@@ -2,7 +2,7 @@ import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { useContext, useState, useEffect } from "react";
 import myContext from "../../context/myContext";
 import toast from "react-hot-toast";
-import { fireDB, auth} from "../../firebase/FirebaseConfig";
+import { fireDB, auth } from "../../firebase/FirebaseConfig";
 import { useNavigate } from "react-router";
 import Loader from "../../components/loader/Loader";
 
@@ -43,7 +43,7 @@ const AddProductPage = () => {
         productImageUrl: "",
         category: "",
         description: "",
-        quantity : 1,
+        quantity: 1,
         time: Timestamp.now(),
         date: new Date().toLocaleString(
             "en-US",
@@ -53,7 +53,7 @@ const AddProductPage = () => {
                 year: "numeric",
             }
         ),
-        adminUid: "" // Initialize admin UID
+        uid: "" // Initialize admin UID
     });
 
     // Effect to fetch admin's UID
@@ -64,7 +64,7 @@ const AddProductPage = () => {
                 if (user) {
                     setProduct(prevProduct => ({
                         ...prevProduct,
-                        adminUid: user.uid // Set admin UID in product state
+                        uid: user.uid // Set admin UID in product state
                     }));
                 }
             } catch (error) {
@@ -94,7 +94,7 @@ const AddProductPage = () => {
         }
     }
 
-    
+
     return (
         <div>
             <div className='flex justify-center items-center h-screen'>

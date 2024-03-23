@@ -12,6 +12,11 @@ function MyState({ children }) {
     // User State
     const [getAllProduct, setGetAllProduct] = useState([]);
 
+    const [allProduct, setAllProduct] = useState([]);
+
+    const user = JSON.parse(localStorage.getItem('users'));
+    // console.log(user.uid);
+
     /**========================================================================
      *                          GET All Product Function
      *========================================================================**/
@@ -25,10 +30,15 @@ function MyState({ children }) {
             );
             const data = onSnapshot(q, (QuerySnapshot) => {
                 let productArray = [];
+                let allProductArray = [];
                 QuerySnapshot.forEach((doc) => {
-                    productArray.push({ ...doc.data(), id: doc.id });
+                    if (doc.data().uid == user.uid || user.uid === "mbuLDb44DQWmGyBJGl0vSkjufn83")
+                        productArray.push({ ...doc.data(), id: doc.id });
+                    allProductArray.push({ ...doc.data(), id: doc.id });
+
                 });
                 setGetAllProduct(productArray);
+                setAllProduct(allProductArray);
                 setLoading(false);
             });
             return () => data;
@@ -57,7 +67,8 @@ function MyState({ children }) {
             const data = onSnapshot(q, (QuerySnapshot) => {
                 let orderArray = [];
                 QuerySnapshot.forEach((doc) => {
-                    orderArray.push({ ...doc.data(), id: doc.id });
+                    if (doc.data().uid == user.uid || user.uid === "mbuLDb44DQWmGyBJGl0vSkjufn83")
+                        orderArray.push({ ...doc.data(), id: doc.id });
                 });
                 setGetAllOrder(orderArray);
                 setLoading(false);
@@ -125,6 +136,7 @@ function MyState({ children }) {
             loading,
             setLoading,
             getAllProduct,
+            allProduct,
             getAllProductFunction,
             getAllOrder,
             orderDelete,

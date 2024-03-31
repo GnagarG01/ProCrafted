@@ -11,7 +11,7 @@ const HomePageProductCard = () => {
     const navigate = useNavigate();
 
     const context = useContext(myContext);
-    const { loading, getAllProduct } = context;
+    const { loading, allProduct } = context;
 
     const cartItems = useSelector((state) => state.cart);
 
@@ -22,14 +22,14 @@ const HomePageProductCard = () => {
     // add to cart function
     const addCart = (item) => {
         dispatch(addToCart(item));
-        toast.success("Added to cart", {duration: 1000})
+        toast.success("Added to cart", { duration: 1000 })
     }
 
 
     // delete from cart function
     const deleteCart = (item) => {
         dispatch(deleteFromCart(item));
-        toast.success("Delete cart",{duration: 1000})
+        toast.success("Delete cart", { duration: 1000 })
     }
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const HomePageProductCard = () => {
                     </div>
                     {/* main 3  */}
                     <div className="flex flex-wrap -m-4">
-                        {getAllProduct.slice(0, 15).map((item, index) => {
+                        {allProduct.slice(0, 15).map((item, index) => {
                             const { id, title, price, productImageUrl } = item;
                             return (
                                 <div key={index} className="p-4 w-full md:w-1/5 transition duration-200 ease-in transform hover:scale-110 hover:shadow-none">

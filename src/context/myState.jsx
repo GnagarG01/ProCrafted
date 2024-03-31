@@ -15,7 +15,7 @@ function MyState({ children }) {
     const [allProduct, setAllProduct] = useState([]);
 
     const user = JSON.parse(localStorage.getItem('users'));
-    // console.log(user.uid);
+    console.log(user.uid);
 
     /**========================================================================
      *                          GET All Product Function

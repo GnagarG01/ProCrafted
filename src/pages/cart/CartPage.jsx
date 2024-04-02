@@ -63,6 +63,10 @@ const CartPage = () => {
             return toast.error("All Fields are required");
         }
 
+        const productDocRef = doc(fireDB, 'products', item.id);
+        const productDocSnapshot = await getDoc(productDocRef);
+        const productData = productDocSnapshot.data();
+
         // Order Info
         const orderInfo = {
             cartItems,
@@ -92,7 +96,7 @@ const CartPage = () => {
             });
 
             // Dispatch action to remove items from the cart
-            
+
 
             // Payment Integration
             const options = {
@@ -143,6 +147,9 @@ const CartPage = () => {
 
             const paymentInstance = new window.Razorpay(options);
             paymentInstance.open();
+
+            const updatedQuantity = productData.quantity - item.quantity;
+            await updateDoc(productDocRef, { quantity: updatedQuantity });
 
             toast.success("Order Placed Successfully");
         } catch (error) {

@@ -26,7 +26,7 @@ const ProductInfo = () => {
         try {
             const productTemp = await getDoc(doc(fireDB, "products", id))
             // console.log({...productTemp.data(), id : productTemp.id})
-            setProduct({...productTemp.data(), id : productTemp.id})
+            setProduct({ ...productTemp.data(), id: productTemp.id })
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -39,8 +39,16 @@ const ProductInfo = () => {
 
     const addCart = (item) => {
         // console.log(item)
-        dispatch(addToCart(item));
-        toast.success("Add to cart")
+        const newItem = {
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: 1,
+            productImageUrl: item.productImageUrl,
+            category: item.category
+        };
+        dispatch(addToCart(newItem));
+        toast.success("Add to cart.", { duration: 1000 });
     }
 
     const deleteCart = (item) => {
@@ -153,8 +161,8 @@ const ProductInfo = () => {
                                             </div>
                                             <p className="inline-block text-2xl font-semibold text-gray-700 dark:text-gray-400 ">
                                                 <span>₹ {product?.price}</span>
-                                            </p>  
-                                        </div> 
+                                            </p>
+                                        </div>
                                         <div className="mb-6">
                                             <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
                                                 Description :

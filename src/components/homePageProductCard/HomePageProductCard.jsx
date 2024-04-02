@@ -20,10 +20,26 @@ const HomePageProductCard = () => {
     const dispatch = useDispatch();
 
     // add to cart function
+    // const addCart = (item) => {
+    //     dispatch(addToCart(item));
+    //     toast.success("Added to cart", { duration: 1000 })
+    // }
+
+
     const addCart = (item) => {
-        dispatch(addToCart(item));
-        toast.success("Added to cart", { duration: 1000 })
-    }
+        // Agar item cart me nahi hai, to usse quantity 1 ke saath cart me add karein
+        const newItem = {
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: 1,
+            productImageUrl: item.productImageUrl,
+            category: item.category
+        };
+        dispatch(addToCart(newItem));
+        toast.success("Add to cart.", { duration: 1000 });
+
+    };
 
 
     // delete from cart function

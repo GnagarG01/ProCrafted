@@ -19,8 +19,16 @@ const AllProduct = () => {
 
     const addCart = (item) => {
         // console.log(item)
-        dispatch(addToCart(item));
-        toast.success("Add to cart")
+        const newItem = {
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: 1,
+            productImageUrl: item.productImageUrl,
+            category: item.category
+        };
+        dispatch(addToCart(newItem));
+        toast.success("Add to cart.", { duration: 1000 });
     }
 
     const deleteCart = (item) => {

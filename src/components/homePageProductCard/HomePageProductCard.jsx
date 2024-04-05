@@ -21,16 +21,29 @@ const HomePageProductCard = () => {
 
     // add to cart function
     const addCart = (item) => {
-        dispatch(addToCart(item));
-        toast.success("Added to cart", {duration: 1000})
-    }
+        const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
 
-
-    // delete from cart function
-    const deleteCart = (item) => {
-        dispatch(deleteFromCart(item));
-        toast.success("Delete cart",{duration: 1000})
-    }
+        if (existingItem) {
+            if (existingItem.quantity < 100) {
+                dispatch(incrementQuantity(item.id));
+                toast.success("Item quantity updated in cart.");
+            } else {
+                toast.error("The maximum quantity for this product has been reached.");
+            }
+        } else {
+            // Agar item cart me nahi hai, to usse quantity 1 ke saath cart me add karein
+            const newItem = {
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                quantity: 1,
+                productImageUrl: item.productImageUrl,
+                category: item.category
+            };
+            dispatch(addToCart(newItem));
+            toast.success("Add to cart.");
+        }
+    };
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -69,7 +82,7 @@ const HomePageProductCard = () => {
                                                 ProCrafted
                                             </h2>
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-                                                {title.substring(0, 19)}
+                                                {title.substring(0, 15)}
                                             </h1>
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                 ₹{price}
